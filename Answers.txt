@@ -1,0 +1,16 @@
+Q1: What would be a suitable test card to perform the authorization as explained above? Check Adyen’s support page for a list.
+A1: 2223 0000 4841 0010, Credit, NL, 08/2018, 737
+
+Q2: Point out the mistakes in the below JSON example (snippet #1). Note that there are both syntactical errors as well as logical errors.
+A2: - Although 25 is a valid amount, it's not equal to 25 GBP or 25 USD because the amount must be presented in minor units.  25 GBP should be presented as 2500.
+    - The "number" key is syntactically correct, but has a logical error.  The space at the beginning of the number is logically incorrect.
+    - The "shopperreference" key is invalid.  Key's are case sensitive.  This should be "shopperReference".
+
+Q3: Make sure to note down the pspReference of the successful transaction. This parameter is returned in the API response, and you’ll need it for the other exercises.
+A3: 8815082988986649
+
+Q4: Visit the notification endpoint, wait a couple of seconds again, you should be able to see the result of the refund. Did it execute successfully? If not, explain why.
+A4: The request did execute successfully.  Had I made this request with a value greater than 2500, this would have caused a problem and the request would not have executed successfully.  The API reference states that "The [modificationAmount] value must be smaller than or equal to the authorized amount".
+
+Q5: Take another look at the notification endpoint. Did this second request execute successfully? If not, explain why.
+A5: The request failed to execute successfully because of an "Insufficient balance on payment".  The full amount of $25 was already refunded in the previous request and so a partial amount of $13 (1300) could not be refunded.

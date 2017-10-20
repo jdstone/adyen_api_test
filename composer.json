@@ -1,0 +1,6 @@
+{
+    "name": "jd/adyen_api_test",
+    "require": {
+        "adyen/php-api-library": "^1.3"
+    }
+}
